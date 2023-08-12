@@ -6,6 +6,11 @@ public class Pizza {
     private Boolean isVeg;
     private String bill;
 
+    private boolean cheeseAdded;
+    private boolean toppingsAdded;
+    private boolean bagAdded;
+    private boolean billGenerated;
+
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
@@ -24,18 +29,26 @@ public class Pizza {
     }
 
     public void addExtraCheese(){
-        if(this.bill.contains("Extra Cheese Added:")){
+//        if(this.bill.contains("Extra Cheese Added:")){
+//            return;
+//        }
+        if(this.cheeseAdded){
             return;
         }
         // your code goes here
-        price+=80;
+        this.price+=80;
+        this.cheeseAdded=true;
         this.bill+="Extra Cheese Added: 80\n";
     }
 
     public void addExtraToppings(){
-        if(this.bill.contains("Extra Toppings Added:")){
-            return;
-        }
+//        if(this.bill.contains("Extra Toppings Added:")){
+//            return;
+//        }
+            if(this.toppingsAdded){
+                return;
+            }
+            this.toppingsAdded=true;
         // your code goes here
         if(this.isVeg==true){
             this.price+=70;
@@ -47,9 +60,13 @@ public class Pizza {
     }
 
     public void addTakeaway(){
-        if(this.bill.contains("Paperbag Added:")){
+//        if(this.bill.contains("Paperbag Added:")){
+//            return;
+//        }
+        if(this.bagAdded){
             return;
         }
+        this.bagAdded=true;
         // your code goes here
         this.price+=20;
         this.bill+="Paperbag Added: 20\n";
@@ -57,9 +74,13 @@ public class Pizza {
 
     public String getBill(){
         // your code goes here
-        if(this.bill.contains("Total Price:")){
+//        if(this.bill.contains("Total Price:")){
+//            return this.bill;
+//        }
+        if(this.billGenerated){
             return this.bill;
         }
+        this.billGenerated = true;
         this.bill+="Total Price: " + this.price+"\n";
         return this.bill;
     }
